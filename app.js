@@ -5,6 +5,7 @@ const multer = require('multer');
 const upload = multer();
 
 const userRouter = require('./routes/user.routes');
+const chatRouter = require('./routes/chat.routes');
 
 const globalErrorHandler = require('./controllers/error.controller');
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(upload.none());
 
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/chat', chatRouter);
 
 app.use('*', (req, res) => {
   const message = `${req.originalUrl} route is not defined`;

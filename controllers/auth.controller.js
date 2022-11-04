@@ -51,3 +51,14 @@ exports.login = catchAsync(async (req, res, next) => {
 
   createAndSendToken(res, 200, user);
 });
+
+exports.protect = catchAsync(async (req, res, next) => {
+  if (!req.headers.authorization?.startsWith('Bearer'))
+    return next(new AppError('Please login to continue', 401));
+
+  const token = req.headers.authorization.split(' ')[1];
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  const user = await User.findById(decoded._id);
+  req.user = user;
+  next();
+});

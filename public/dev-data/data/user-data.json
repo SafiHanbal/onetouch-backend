@@ -1,0 +1,82 @@
+[
+  {
+    "_id": "6356575b32274f2bb1e2fdb2",
+    "name": "Safi Hanbal",
+    "email": "safihanbal@onetouch.io",
+    "image": "http://127.0.0.1:8000/images/safi-hanbal.jpg",
+    "role": "admin",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb3",
+    "name": "Barbara Swanson",
+    "email": "barbaraswanson@example.com",
+    "image": "http://127.0.0.1:8000/images/barbara-swanson.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb4",
+    "name": "Carol Berger",
+    "email": "carolberger@example.com",
+    "image": "http://127.0.0.1:8000/images/carol-berger.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb5",
+    "name": "Mui Spaulding",
+    "email": "muispaulding@example.com",
+    "image": "http://127.0.0.1:8000/images/mui-spaulding.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb6",
+    "name": "James McLean",
+    "email": "jamesmclean@example.com",
+    "image": "http://127.0.0.1:8000/images/james-mclean.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb1",
+    "name": "Arden Brown",
+    "email": "ardenbrown@example.com",
+    "image": "http://127.0.0.1:8000/images/arden-brown.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb0",
+    "name": "Brian Joyce",
+    "email": "brianjoyce@example.com",
+    "image": "http://127.0.0.1:8000/images/brian-joyce.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb9",
+    "name": "Rosie Ohman",
+    "email": "rosieohman@example.com",
+    "image": "http://127.0.0.1:8000/images/rosie-ohman.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb8",
+    "name": "Dana Young",
+    "email": "danayoung@example.com",
+    "image": "http://127.0.0.1:8000/images/dana-young.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  },
+  {
+    "_id": "6356575b32274f2bb1e2fdb7",
+    "name": "Jake Franklin",
+    "email": "jakefranklin@example.com",
+    "image": "http://127.0.0.1:8000/images/jake-franklin.jpg",
+    "role": "user",
+    "password": "$2a$12$Wyf.lnIwGPA0eUmIk0qm6e9uxmwKlfsyNy2g5BPrlc.b02D4U1M5K"
+  }
+]
