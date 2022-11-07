@@ -1,5 +1,7 @@
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const slugify = require('slugify');
 const catchAsync = require('../utils/catch-async.utils');
 const AppError = require('../utils/app-error.utils');
 const User = require('../models/user.model');
@@ -23,9 +25,44 @@ const createAndSendToken = (res, statusCode, user) => {
   });
 };
 
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images');
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split('/')[1];
+
+    const fileName = `user-${slugify(req.body.name, { lower: true })}-${slugify(
+      file.originalname.split('.')[0],
+      { lower: true }
+    )}-${Date.now()}.${ext}`;
+
+    console.log(fileName);
+    cb(null, fileName);
+  },
+});
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image! Please upload only images.', 400));
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.uploadUserPhoto = upload.single('image');
+
 exports.signup = catchAsync(async (req, res, next) => {
-  console.log(req.body);
-  const { name, email, password, confirmPassword, image } = req.body;
+  const { name, email, password, confirmPassword } = req.body;
+
+  let image;
+  if (req.file) image = `http://127.0.0.1:8000/images/${req.file.filename}`;
+  else image = undefined;
 
   const user = await User.create({
     name,
@@ -41,6 +78,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
+  console.log(req.body);
   const { email, password } = req.body;
   if (!email || !password)
     return next(new AppError('Please provide email and password!', 400));

@@ -1,8 +1,6 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer');
-const upload = multer();
 
 const userRouter = require('./routes/user.routes');
 const chatRouter = require('./routes/chat.routes');
@@ -19,8 +17,8 @@ if (process.env.NODE_ENV) {
 }
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(upload.none());
 
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/chat', chatRouter);
