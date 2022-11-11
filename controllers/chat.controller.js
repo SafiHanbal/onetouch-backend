@@ -4,17 +4,24 @@ const Chat = require('../models/chat.model');
 const User = require('../models/user.model');
 
 exports.getChats = catchAsync(async (req, res, next) => {
-  const chat = await Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
+  let chats = await Chat.find({
+    users: { $elemMatch: { $eq: req.user._id } },
+  })
     .populate('users')
     .populate('groupAdmin')
     .populate('latestMessage')
     .sort({ updatedAt: -1 });
 
+  chats = await User.populate(chats, {
+    path: 'latestMessage.sender',
+    select: 'name',
+  });
+
   res.status(200).json({
     status: 'success',
-    body: {
-      results: chat.length,
-      chat,
+    data: {
+      results: chats.length,
+      chats,
     },
   });
 });
@@ -33,8 +40,6 @@ exports.accessChat = catchAsync(async (req, res, next) => {
     .populate('users', '-role')
     .populate('latestMessage');
 
-  console.log(chats);
-
   // When chat does not exist
   if (!chats.length) {
     const newChat = await (
@@ -44,13 +49,15 @@ exports.accessChat = catchAsync(async (req, res, next) => {
     res.status(201).json({
       status: 'success',
       data: {
-        newChat,
+        chat: newChat,
       },
     });
   } else {
     res.status(200).json({
       status: 'success',
-      chats,
+      data: {
+        chat: chats[0],
+      },
     });
   }
 });
@@ -62,11 +69,10 @@ exports.createGroupChat = catchAsync(async (req, res, next) => {
     return next(
       new AppError('Please provide chatName and more than one users users', 400)
     );
-  console.log(true);
 
   const createdChat = await Chat.create({
     chatName,
-    users,
+    users: [...users, req.user],
     isGroupChat: true,
     groupAdmin: req.user._id,
   });

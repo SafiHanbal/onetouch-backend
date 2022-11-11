@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const userRouter = require('./routes/user.routes');
 const chatRouter = require('./routes/chat.routes');
+const messageRouter = require('./routes/message.routes');
 
 const globalErrorHandler = require('./controllers/error.controller');
 
@@ -22,6 +23,7 @@ app.use(cors());
 
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/chat', chatRouter);
+app.use('/api/v1/message', messageRouter);
 
 app.use('*', (req, res) => {
   const message = `${req.originalUrl} route is not defined`;

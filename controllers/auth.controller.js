@@ -14,8 +14,8 @@ const createAndSendToken = (res, statusCode, user) => {
   res.status(statusCode).json({
     status: 'success',
     data: {
-      token,
       user: {
+        token,
         _id,
         name,
         email,
@@ -37,7 +37,6 @@ const multerStorage = multer.diskStorage({
       { lower: true }
     )}-${Date.now()}.${ext}`;
 
-    console.log(fileName);
     cb(null, fileName);
   },
 });
@@ -78,7 +77,6 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-  console.log(req.body);
   const { email, password } = req.body;
   if (!email || !password)
     return next(new AppError('Please provide email and password!', 400));
@@ -89,6 +87,13 @@ exports.login = catchAsync(async (req, res, next) => {
 
   createAndSendToken(res, 200, user);
 });
+
+exports.logout = (req, res, next) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'You are logged out successfully!',
+  });
+};
 
 exports.protect = catchAsync(async (req, res, next) => {
   if (!req.headers.authorization?.startsWith('Bearer'))

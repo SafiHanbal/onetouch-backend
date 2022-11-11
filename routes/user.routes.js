@@ -2,6 +2,7 @@ const express = require('express');
 const {
   signup,
   login,
+  logout,
   protect,
   uploadUserPhoto,
 } = require('../controllers/auth.controller');
@@ -18,6 +19,7 @@ router.get('/check', (req, res) => {
 
 router.post('/signup', uploadUserPhoto, signup);
 router.post('/login', login);
+router.get('/logout', logout);
 
 router.route('/').get(protect, getAllUsers);
 
