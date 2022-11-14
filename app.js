@@ -12,10 +12,10 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-if (process.env.NODE_ENV) {
-  const morgan = require('morgan');
-  app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV) {
+//   const morgan = require('morgan');
+//   app.use(morgan('dev'));
+// }
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
